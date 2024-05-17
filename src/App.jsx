@@ -1,22 +1,12 @@
-import { useState } from 'react';
-import './App.css';
+import Authenticate from "./components/Authenticate.jsx";
+import SignUpForm from "./components/SignUpForm.jsx";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
     <>
-      <div className="card">
-        
-        <p>
-     
-        </p>
-      </div>
-      <p className="read-the-docs">
-    
-      </p>
+      <Authenticate />
+      <SignUpForm />
     </>
   );
 }
-
-export default App;
