@@ -4,6 +4,7 @@ export default function SignUpForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -26,16 +27,20 @@ export default function SignUpForm() {
 
       const result = await response.json();
       console.log("Success:", result);
-      // Handle success case (e.g., redirect, display success message, etc.)
+      setLoggedInUser(result.data.username);
+      setError(null);
     } catch (error) {
       setError(error.message);
     }
   }
 
   return (
-    <>
+    <div className="signup-form">
       <h2>Sign Up</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
+      {loggedInUser && (
+        <p className="success-message">Welcome, {loggedInUser}!</p>
+      )}
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -54,6 +59,6 @@ export default function SignUpForm() {
         </label>
         <button type="submit">Submit</button>
       </form>
-    </>
+    </div>
   );
 }
